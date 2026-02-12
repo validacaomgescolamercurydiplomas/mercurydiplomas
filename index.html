@@ -113,6 +113,7 @@ const diplomas = {
         curso: "Técnico em Informática",
         carga: "120 horas",
         data: "10/09/2025",
+        foto: "gabriel.jpeg",
         registro: "REG-987654"
     },
     "DIP-2026-002": {
@@ -129,14 +130,20 @@ function verificar(){
     let resultado = document.getElementById("resultado");
 
     if(diplomas[codigo]){
-        let aluno = diplomas[codigo];
-        resultado.innerHTML = `
-            <div class="valido">✔ Diploma Válido</div>
-            <strong>Nome:</strong> ${aluno.nome}<br>
-            <strong>Curso:</strong> ${aluno.curso}<br>
-            <strong>Carga Horária:</strong> ${aluno.carga}<br>
-            <strong>Data de Conclusão:</strong> ${aluno.data}<br>
-            <strong>Nº Registro:</strong> ${aluno.registro}
+    let aluno = diplomas[codigo];
+    resultado.innerHTML = `
+        <div class="valido">✔ Diploma Válido</div>
+
+        <img src="${aluno.foto}" 
+             style="width:140px; height:160px; object-fit:cover; 
+             border-radius:8px; margin:15px 0; border:2px solid #1e3a8a;">
+
+        <strong>Nome:</strong> ${aluno.nome}<br>
+        <strong>Curso:</strong> ${aluno.curso}<br>
+        <strong>Carga Horária:</strong> ${aluno.carga}<br>
+        <strong>Data de Conclusão:</strong> ${aluno.data}<br>
+        <strong>Nº Registro:</strong> ${aluno.registro}
+    `;
         `;
     } else {
         resultado.innerHTML = `<div class="invalido">✖ Código não encontrado ou inválido</div>`;
@@ -146,6 +153,7 @@ function verificar(){
 
 </body>
 </html>
+
 
 
 
