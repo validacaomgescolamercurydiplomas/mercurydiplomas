@@ -71,6 +71,7 @@ button:hover{
     color:green;
     font-weight:bold;
     margin-bottom:10px;
+    font-size:16px;
 }
 
 .invalido{
@@ -82,6 +83,7 @@ button:hover{
     margin-top:25px;
     font-size:12px;
     color:#888;
+    text-align:center;
 }
 </style>
 </head>
@@ -90,8 +92,9 @@ button:hover{
 
 <div class="container">
     <img src="logo.png" alt="Logo Escola Mercury" style="width:120px; margin-bottom:15px;">
-<h1>ESCOLA TÉCNICA MERCURY LTDA</h1>
-<div class="sub">Sistema Oficial de Autenticação de Diplomas</div>
+
+    <h1>ESCOLA TÉCNICA MERCURY LTDA</h1>
+    <div class="sub">Sistema Oficial de Autenticação de Diplomas</div>
 
     <input type="text" id="codigo" placeholder="Digite o código do diploma">
     <br>
@@ -100,10 +103,10 @@ button:hover{
     <div class="resultado" id="resultado"></div>
 
     <div class="footer">
-    © 2026 ESCOLA TÉCNICA MERCURY LTDA<br>
-    Rio de Janeiro - RJ<br>
-    CNPJ: 41.280.428/0001-12
-</div>
+        © 2026 ESCOLA TÉCNICA MERCURY LTDA<br>
+        Rio de Janeiro - RJ<br>
+        CNPJ: 41.280.428/0001-12
+    </div>
 </div>
 
 <script>
@@ -113,8 +116,8 @@ const diplomas = {
         curso: "Técnico em Informática",
         carga: "120 horas",
         data: "10/09/2025",
-        foto: "gabriel.jpeg",
-        registro: "REG-987654"
+        registro: "REG-987654",
+        foto: "gabriel.jpeg"
     },
     "DIP-2026-002": {
         nome: "Maria Oliveira",
@@ -122,6 +125,7 @@ const diplomas = {
         carga: "80 horas",
         data: "05/02/2026",
         registro: "REG-123456"
+        // Sem foto (não quebra o sistema)
     }
 };
 
@@ -130,20 +134,22 @@ function verificar(){
     let resultado = document.getElementById("resultado");
 
     if(diplomas[codigo]){
-    let aluno = diplomas[codigo];
-    resultado.innerHTML = `
-        <div class="valido">✔ Diploma Válido</div>
+        let aluno = diplomas[codigo];
 
-        <img src="${aluno.foto}" 
-             style="width:140px; height:160px; object-fit:cover; 
-             border-radius:8px; margin:15px 0; border:2px solid #1e3a8a;">
+        resultado.innerHTML = `
+            <div class="valido">✔ Diploma Válido</div>
 
-        <strong>Nome:</strong> ${aluno.nome}<br>
-        <strong>Curso:</strong> ${aluno.curso}<br>
-        <strong>Carga Horária:</strong> ${aluno.carga}<br>
-        <strong>Data de Conclusão:</strong> ${aluno.data}<br>
-        <strong>Nº Registro:</strong> ${aluno.registro}
-    `;
+            ${aluno.foto ? `
+            <img src="${aluno.foto}" 
+                 style="width:140px; height:160px; object-fit:cover; 
+                 border-radius:8px; margin:15px 0; border:2px solid #1e3a8a;">
+            ` : ``}
+
+            <strong>Nome:</strong> ${aluno.nome}<br>
+            <strong>Curso:</strong> ${aluno.curso}<br>
+            <strong>Carga Horária:</strong> ${aluno.carga}<br>
+            <strong>Data de Conclusão:</strong> ${aluno.data}<br>
+            <strong>Nº Registro:</strong> ${aluno.registro}
         `;
     } else {
         resultado.innerHTML = `<div class="invalido">✖ Código não encontrado ou inválido</div>`;
@@ -153,11 +159,3 @@ function verificar(){
 
 </body>
 </html>
-
-
-
-
-
-
-
-
