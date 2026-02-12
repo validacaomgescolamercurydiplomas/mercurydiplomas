@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escola Mercury - Verificação de Diploma</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:#ffffff;
+    width:500px;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
+    text-align:center;
+}
+
+h1{
+    margin:0;
+    color:#1e293b;
+}
+
+.sub{
+    font-size:14px;
+    color:#555;
+    margin-bottom:25px;
+}
+
+input{
+    width:90%;
+    padding:12px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+button{
+    padding:12px 25px;
+    margin-top:12px;
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:15px;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.resultado{
+    margin-top:25px;
+    text-align:left;
+    font-size:14px;
+}
+
+.valido{
+    color:green;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.invalido{
+    color:red;
+    font-weight:bold;
+}
+
+.footer{
+    margin-top:25px;
+    font-size:12px;
+    color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Escola Mercury</h1>
+    <div class="sub">Sistema Oficial de Verificação de Diplomas</div>
+
+    <input type="text" id="codigo" placeholder="Digite o código do diploma">
+    <br>
+    <button onclick="verificar()">Verificar Diploma</button>
+
+    <div class="resultado" id="resultado"></div>
+
+    <div class="footer">
+        © 2026 Escola Mercury - Todos os direitos reservados
+    </div>
+</div>
+
+<script>
+const diplomas = {
+    "DIP-2026-001": {
+        nome: "João da Silva",
+        curso: "Técnico em Informática",
+        carga: "120 horas",
+        data: "10/02/2026",
+        registro: "REG-987654"
+    },
+    "DIP-2026-002": {
+        nome: "Maria Oliveira",
+        curso: "Montagem e Manutenção",
+        carga: "80 horas",
+        data: "05/02/2026",
+        registro: "REG-123456"
+    }
+};
+
+function verificar(){
+    let codigo = document.getElementById("codigo").value.toUpperCase().trim();
+    let resultado = document.getElementById("resultado");
+
+    if(diplomas[codigo]){
+        let aluno = diplomas[codigo];
+        resultado.innerHTML = `
+            <div class="valido">✔ Diploma Válido</div>
+            <strong>Nome:</strong> ${aluno.nome}<br>
+            <strong>Curso:</strong> ${aluno.curso}<br>
+            <strong>Carga Horária:</strong> ${aluno.carga}<br>
+            <strong>Data de Conclusão:</strong> ${aluno.data}<br>
+            <strong>Nº Registro:</strong> ${aluno.registro}
+        `;
+    } else {
+        resultado.innerHTML = `<div class="invalido">✖ Código não encontrado ou inválido</div>`;
+    }
+}
+</script>
+
+</body>
+</html>
